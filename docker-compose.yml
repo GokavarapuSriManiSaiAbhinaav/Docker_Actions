@@ -1,0 +1,40 @@
+services:
+  mysqldb:
+    container_name: mysql-db
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: art
+      # MYSQL_USER: klu
+      # MYSQL_PASSWORD: klu
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql   # volume added here
+
+  backend:
+    image: backend-image
+    container_name: docker-springboot
+    build:
+      context: ./OnlineArt
+      dockerfile: ../OnlineArt-FullStack/backend.dockerfile
+    ports:
+      - "3025:2080"
+    depends_on:
+      - mysqldb
+    restart: on-failure
+
+  frontend:
+    image: frontend-image
+    container_name: docker-react
+    build:
+      context: ./onlineartgallery
+      dockerfile: ../OnlineArt-FullStack/frontend.dockerfile
+    ports:
+      - "3030:80"
+    depends_on:
+      - backend
+
+# Declare volumes at the bottom
+volumes:
+  mysql-data:

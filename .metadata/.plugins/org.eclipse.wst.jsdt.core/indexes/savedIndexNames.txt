@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+D:\PRACTICE\DEVOPS\DOCKER-FULLSTACK\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2666064374.index
+2162444245.index
+1729128841.index
+3960079015.index
+4140207959.index
